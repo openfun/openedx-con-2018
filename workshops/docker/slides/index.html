@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Running Open edX in production with Docker — France Université Numérique</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="../../../assets/reveal.js/css/theme/white.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../../../assets/css/hljs/github.css">
+
+  <!-- Custom fonts/theme -->
+  <link rel="stylesheet" href="../../../assets/css/custom.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '../../../assets/reveal.js/css/print/pdf.css' : '../../../assets/reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown class="title">
+        <script type="text/template">
+          # Running Open edX in production with Docker
+
+          France Université Numérique
+
+          <small>
+            [Open edX Conference](https://con.openedx.org)
+            — Montréal, Canada
+            — May 2018
+          </small>
+        </script>
+      </section>
+
+      <section data-markdown="outline.md" class="outline" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown>
+        <script type="text/template">
+            ## Thank you!
+
+            Get in touch:
+
+            [fun.dev@fun-mooc.fr](mailto:fun.dev@fun-mooc.fr)
+
+            [github:openfun](https://github.com/openfun)
+          </script>
+      </section>
+    </div>
+  </div>
+
+  <script src="../../../assets/reveal.js/lib/js/head.min.js"></script>
+  <script src="../../../assets/reveal.js/js/reveal.js"></script>
+
+  <script>
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+
+      dependencies: [
+        { src: '../../../assets/reveal.js/plugin/markdown/marked.js' },
+        { src: '../../../assets/reveal.js/plugin/markdown/markdown.js' },
+        { src: '../../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+</body>
+
+</html>

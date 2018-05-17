@@ -1,0 +1,11 @@
+/*
+    Custom css rules for FUN presentations
+ */
+
+.reveal pre {
+  box-shadow: none;
+}
+
+.reveal pre code {
+  padding: 1rem;
+}
