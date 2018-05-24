@@ -9,3 +9,8 @@
 .reveal pre code {
   padding: 1rem;
 }
+
+.reveal section img {
+  border: 0;
+  box-shadow: none;
+}
