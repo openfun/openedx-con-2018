@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Richie, a CMS Open edX — France Université Numérique</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="../../assets/reveal.js/css/theme/white.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome-all.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../../assets/css/hljs/github.css">
+
+  <!-- Custom fonts/theme -->
+  <link rel="stylesheet" href="../../assets/css/custom.css">
+
+  <style>
+    .reveal section img {
+      border: none;
+      box-shadow: none;
+    }
+  </style>
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '../../assets/reveal.js/css/print/pdf.css' : '../../assets/reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown class="title">
+        <script type="text/template">
+          # Richie - A <strike>CMS</strike> for Open edX
+
+          Mehdi Benadda <br> Freelance @ France Université Numérique
+
+          <small>
+            [Open edX Conference](https://con.openedx.org)
+            — Montréal, Canada
+            — May 2018
+          </small>
+        </script>
+      </section>
+
+      <section data-markdown="02-interlude.md" class="interlude" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown="01-outline.md" class="outline" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown="03-purpose.md" class="purpose" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown="04-purpose.md" class="purpose" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section>
+        <img src="img/01.png" alt="Search demo part 1 - UI">
+      </section>
+
+      <section>
+        <img src="img/02.png" alt="Search demo part 2 - Search">
+      </section>
+
+      <section>
+        <img src="img/03.png" alt="Search demo part 3 - Course suggestion">
+      </section>
+
+      <section>
+        <img src="img/04.png" alt="Search demo part 4 - Subject suggestion">
+      </section>
+
+      <section>
+        <img src="img/05.png" alt="Search demo part 5 - Multifacetting">
+      </section>
+
+      <section data-markdown="97-future.md" class="future" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown="98-future.md" class="future" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown="99-future.md" class="future" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+      <section data-markdown>
+        <script type="text/template">
+            ## Thank you!
+
+            Get in touch:
+
+            <i class="far fa-envelope"></i> [fun.dev@fun-mooc.fr](mailto:fun.dev@fun-mooc.fr)
+
+            <i class="fab fa-github"></i> [openfun](https://github.com/openfun)
+
+            <i class="fab fa-twitter"></i> [@open_fun](https://github.com/open_fun)
+          </script>
+      </section>
+    </div>
+  </div>
+
+  <script src="../../assets/reveal.js/lib/js/head.min.js"></script>
+  <script src="../../assets/reveal.js/js/reveal.js"></script>
+
+  <script>
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+
+      dependencies: [
+        { src: '../../assets/reveal.js/plugin/markdown/marked.js' },
+        { src: '../../assets/reveal.js/plugin/markdown/markdown.js' },
+        { src: '../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+</body>
+
+</html>
