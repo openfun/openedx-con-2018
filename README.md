@@ -7,19 +7,19 @@ during the 2018 edition of the [Open edX conference](https://con.openedx.org/).
 
 ### Fonzie, an Open API for Open edX
 
-* [Slides](./talks/fonzie/)
+* [Slides](https://openfun.github.io/openedx-con-2018/talks/fonzie/)
 * GitHub repository: https://github.com/openfun/fonzie
 
 ### Richie, a CMS for Open edX
 
-* [Slides](./talks/richie/)
+* [Slides](https://openfun.github.io/openedx-con-2018/talks/richie/)
 * GitHub repository: https://github.com/openfun/richie
 
 ## Workshop
 
 ### Running Open edX in production with Docker
 
-* [Slides](./workshops/docker/slides/)
+* [Slides](https://openfun.github.io/openedx-con-2018/workshops/docker/slides/)
 * [Materials](./workshops/docker/materials/)
 
 ## License
