@@ -44,18 +44,241 @@
         </script>
       </section>
 
-      <section data-markdown="outline.md" class="outline" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+      <section data-markdown>
+          # Outline
+
+          1. Introduction - 20 minutes
+          2. Coding Dojo - 60 minutes
+          3. Conclusion - 10 minutes
+      </section>
+
+      <section>
+        <section data-markdown>
+          # Introduction
+        </section>
+
+        <section>
+          <p style="font-size:4em;">📦</p>
+          Container-native development
+
+          <p style="color: brown;font-weight:bold;">Develop, build, test & deploy on the same container</p>
+
+          Push ready-to-run <span style="color:brown;">Docker images</span> to a registry<br>instead of<br>pushing <span style="color: brown;">code</span> to a code repository
+        </section>
+
+        <section>
+            <p style="font-size:4em;">🤓</p>
+            containerizing applications means<br>developers take responsibility
+        </section>
+
+        <section>
+          <p style="font-size:4em;">🍻<p>
+          <div style="font-size:0.8em;">
+            inviting <span style="color:red;">edx-configuration</span> and <span style="color:red;">devstack</span> inside <span style="color:red;">edx-platform</span>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          # Meet Arnold
+        </section>
+
+        <section data-markdown>
+          🐙 [github.com/openfun/arnold](https://www.github.com/openfun/arnold)
+
+          - Packaged as a Docker image
+          - Ansible with [openshift_raw](https://docs.ansible.com/ansible/2.5/modules/openshift_raw_module.html)
+          - [OC](https://docs.openshift.org/latest/cli_reference/index.html) (OpenShift CLI client)
+
+          Note: container can be used directly in CI
+        </section>
+
+        <section>
+          <h1>🐳 Docker images</h1>
+          <table style="font-size:0.6em;">
+            <tr>
+              <td width="50%"><a href="https://github.com/openfun/fun-platform">github.com/openfun/fun-platform</a></td>
+              <td>Native Docker image of edxapp</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/openfun/openshift-docker">github.com/openfun/openshift-docker</a></td>
+              <td>Docker images adapted to OpenShift for related services <span style="font-size: 0.6em;">(nginx, elasticsearch, etc.)</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/openfun/richie">github.com/openfun/richie</a></td>
+              <td>Native Docker image of Richie, a CMS for Open edX based on <a href="https://www.django-cms.org">DjangoCMS</a></td>
+            </tr>
+          </table>
+          <br>
+          <p>Built on CircleCI and pushed to <a href="https://hub.docker.com/r/fundocker">Docker Hub</a></p>
+        </section>
+
+        <section data-markdown>
+          # 🍱 Configuration management
+
+          - Multi-customer, multi-environment
+          - Built on Ansible
+          - Flexible defaults / overrides
+          - Make extensive use of variable precedence
+          - Credentials are encrypted with Ansible vault and pushed to OpenShift secrets
+        </section>
+
+        <section data-markdown>
+          # 🏭 Generate OpenShift objects
+
+          Using Jinja templates and Ansible playbook tasks:
+          - Routes
+          - Services (SVC)
+          - Deployment Configurations (DC)
+          - Endpoints (EP)
+          - Jobs (e.g. collectstatic, migrate,...)
+          - Volumes (PVC) 💾
+          - Configmaps 📁
+          - Secrets 🙈
+        </section>
+
+        <section data-markdown>
+          ![architecture development](img/architecture_development.png)
+        </section>
+
+        <section data-markdown>
+          ![architecture](img/architecture.png)
+        </section>
+
+        <section data-markdown>
+          # Blue/Green deployments
+
+          ![blue green](img/blue_green.png)
+
+          Note: for each deployment, we create unique objects with a stamp
+                The stamp is datetime + random hash (short uuid)
+        </section>
+
+        <section>
+          <h1>🔒 SSL certificates</h1>
+
+          <ul>
+            <li>SSL certificates with <a href="https://letsencrypt.org">Let's Encrypt</a></li>
+            <li>ACME protocol <span style="font-size: 0.7em;">(Automated Certificate Management Environment)</span></li>
+            <li>using <a href="https://github.com/tnozicka/openshift-acme">https://github.com/tnozicka/openshift-acme</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Environments</h1>
+          <table style="font-size:0.4em;">
+            <thead>
+              <tr style="font-weight: bold;">
+                <td width="15%">Environment</td>
+                <td width="15%">Orchestrator</td>
+                <td width="15%">Databases</td>
+                <td width="55%">Routes</td>
+              </tr>
+            </thead>
+            <tr>
+              <td>Development</td>
+              <td>Local MiniShift</td>
+              <td>Container</td>
+              <td>
+                  https://<span style="color: brown;">development</span>-<span style="color:green;">example</span>-<span style="color:blue;">lms</span>.192.168.99.100.nip.io<br>
+                  https://<span style="color: brown;">development</span>-<span style="color:green;">example</span>-<span style="color:blue;">cms</span>.192.168.99.100.nip.io
+              </td>
+            </tr>
+            <tr>
+              <td>Feature</td>
+              <td>OpenShift dev</td>
+              <td>Container</td>
+              <td>
+                https://<span style="color: brown;">feature</span>-<span style="color:green;">example</span>-<span style="color:blue;">lms</span>--<span style="color: brown;">feature-description</span>.dev.openfun.fr<br>
+                https://<span style="color: brown;">feature</span>-<span style="color:green;">example</span>-<span style="color:blue;">cms</span>--<span style="color: brown;">feature-description</span>.dev.openfun.fr
+              </td>
+            </tr>
+            <tr>
+              <td>Staging</td>
+              <td>OpenShift dev</td>
+              <td>Cluster dev</td>
+              <td>
+                https://<span style="color: brown;">staging</span>-<span style="color:green;">example</span>-<span style="color:blue;">lms</span>.dev.openfun.fr<br>
+                https://<span style="color: brown;">staging</span>-<span style="color:green;">example</span>-<span style="color:blue;">cms</span>.dev.openfun.fr
+              </td>
+            </tr>
+            <tr>
+              <td>PreProduction</td>
+              <td>OpenShift dev</td>
+              <td>Cluster dev</td>
+              <td>
+                https://<span style="color: brown;">preproduction</span>-<span style="color:green;">example</span>-<span style="color:blue;">lms</span>.dev.openfun.fr<br>
+                https://<span style="color: brown;">preproduction</span>-<span style="color:green;">example</span>-<span style="color:blue;">cms</span>.dev.openfun.fr
+              </td>
+            </tr>
+            <tr>
+              <td>Production</td>
+              <td>OpenShift prod</td>
+              <td>Cluster prod</td>
+              <td>
+                https://www.example.com<br>
+                https://studio.example.com
+              </td>
+            </tr>
+          </table>
+
+        </section>
+
+        <section data-markdown>
+          ![init container](img/init_container.png)
+
+          Note: The CI does not have access to our secrets
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          # Coding Dojo
+
+          - All skill levels are welcome
+          - Teams of 3 to 4 persons
+          - At least 1 person who knows Docker per team
+          - At least 1 person who knows Ansible per team
+          - Call us when you need help
+        </section>
+
+        <section data-markdown>
+          ```
+            git clone git@github.com:openfun/arnold.git
+
+            git checkout openedx-con
+          ```
+
+          and follow the readme...
+        </section>
+
+      </section>
+
+      <section>
+        <section data-markdown>
+          # Conclusion
+        </section>
+        <section data-markdown>
+          # 🚧 Todo list
+
+          - current routes and blue/green switch
+          - load SQL dump for development/feature envs
+          - refactor settings override mechanism
+          - github issues...
+        </section>
+      </section>
 
       <section data-markdown>
         <script type="text/template">
-            ## Thank you!
+          ## Thank you!
 
-            Get in touch:
-
-            [fun.dev@fun-mooc.fr](mailto:fun.dev@fun-mooc.fr)
-
-            [github:openfun](https://github.com/openfun)
-          </script>
+          Get in touch:
+             
+          [fun.dev@fun-mooc.fr](mailto:fun.dev@fun-mooc.fr)
+             
+          [github:openfun](https://github.com/openfun)
+        </script>
       </section>
     </div>
   </div>
@@ -73,6 +296,7 @@
       dependencies: [
         { src: '../../../assets/reveal.js/plugin/markdown/marked.js' },
         { src: '../../../assets/reveal.js/plugin/markdown/markdown.js' },
+        { src: '../../../assets/reveal.js/plugin/zoom-js/zoom.js', async: true },
         { src: '../../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
       ]
     });
